@@ -9,7 +9,6 @@ import {
 } from "../services/productService";
 
 export const useProduct = () => {
-  // const [products, setProducts] = useState<Product[]>([]);
   const [error, setError] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
 

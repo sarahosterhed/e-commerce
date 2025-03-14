@@ -1,12 +1,11 @@
 import axios from "axios";
 import { Product, ProductCreate } from "../types/Product";
 
-const API_URL = "http://localhost:3000";
+const PRODUCT_URL = "http://localhost:3000/products";
 
 export const fetchProducts = async (): Promise<Product[]> => {
   try {
-    const response = await axios.get(`${API_URL}/products`);
-    console.log(response.data);
+    const response = await axios.get(`${PRODUCT_URL}`);
     return response.data;
   } catch (error) {
     console.log(error);
@@ -16,7 +15,7 @@ export const fetchProducts = async (): Promise<Product[]> => {
 
 export const fetchProductById = async (id: number): Promise<Product> => {
   try {
-    const response = await axios.get(`${API_URL}/products/${id}`);
+    const response = await axios.get(`${PRODUCT_URL}/${id}`);
     return response.data;
   } catch (error) {
     console.log(error);
@@ -26,7 +25,7 @@ export const fetchProductById = async (id: number): Promise<Product> => {
 
 export const deleteProduct = async (id: number): Promise<void> => {
   try {
-    await axios.delete(`${API_URL}/products/${id}`);
+    await axios.delete(`${PRODUCT_URL}/${id}`);
   } catch (error) {
     console.log(error);
     throw new Error();
@@ -35,7 +34,7 @@ export const deleteProduct = async (id: number): Promise<void> => {
 
 export const createProduct = async (payload: ProductCreate): Promise<Product> => {
   try {
-    const response = await axios.post(`${API_URL}/products`, payload);
+    const response = await axios.post(`${PRODUCT_URL}`, payload);
     return response.data
   } catch (error) {
     console.log(error);
@@ -45,8 +44,7 @@ export const createProduct = async (payload: ProductCreate): Promise<Product> =>
 
 export const updateProduct = async ( id: number, payload: ProductCreate): Promise<Product> => {
   try {
-    const response = await axios.patch(`${API_URL}/products/${id}`, payload);
-    console.log("Product updated", response.data);
+    const response = await axios.patch(`${PRODUCT_URL}/${id}`, payload);
     return response.data
   } catch (error) {
     console.log(error);

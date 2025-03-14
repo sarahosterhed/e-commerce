@@ -24,12 +24,12 @@ export const Products = () => {
     getData();
   }, []);
 
-  const handleUpdateProduct = (id: number) => {
+  const handleUpdate = (id: number) => {
     setUpdateProductId(id);
     handleOpen();
   };
 
-  const handleDeleteProduct = async (id: number) => {
+  const handleDelete = async (id: number) => {
     await deleteProductHandler(id);
     dispatch({
       type: ActionType.DELETED,
@@ -37,7 +37,7 @@ export const Products = () => {
     });
   };
 
-  const handleCreateProduct = () => {
+  const handleCreate = () => {
     handleOpen();
   };
 
@@ -47,7 +47,7 @@ export const Products = () => {
         {openCreate ? (
           <CreateProduct handleClose={() => setOpenCreate(false)} />
         ) : (
-          <button onClick={handleCreateProduct}>Create new product</button>
+          <button onClick={handleCreate}>Create new product</button>
         )}
         <h2>Manage Products</h2>
         <section id="product-list">
@@ -86,10 +86,10 @@ export const Products = () => {
                   <div
                     style={{ marginTop: "10px", display: "flex", gap: "10px" }}
                   >
-                    <button onClick={() => handleDeleteProduct(p.id)}>
+                    <button onClick={() => handleDelete(p.id)}>
                       Delete
                     </button>
-                    <button onClick={() => handleUpdateProduct(p.id)}>
+                    <button onClick={() => handleUpdate(p.id)}>
                       Edit
                     </button>
                   </div>
